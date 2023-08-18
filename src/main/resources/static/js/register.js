@@ -29,7 +29,7 @@ function handleRegister(event){
 	};
 	return res;
 }).then(res=>{
-	localStorage.setItem('connectedUser',JSON.stringify(res));
+	sessionStorage.setItem('connectedUser',JSON.stringify(user));
 	window.location.href = "index.html";
 }).catch(err=>{
 	console.log('post req err',err);

@@ -28,11 +28,13 @@ fetch('http://localhost:8080/api/v1/users/login',{
 	return res.json();
 }).then(res=>{
 	
-	localStorage.setItem('connectedUser',JSON.stringify(res));
+	sessionStorage.setItem('connectedUser',JSON.stringify(res));
 	window.location.href = "index.html";
 }).catch(err=>{
 	console.log('post req err',err);
 });
+
+	
 };
 
 

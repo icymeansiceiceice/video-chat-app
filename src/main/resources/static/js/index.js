@@ -3,10 +3,16 @@ window.addEventListener("load",loadAndDisplayUser);
 const logoutBtn = document.getElementById('logoutBtn');
 logoutBtn.addEventListener('click',handleLogout);
 
+const newMeetingBtn = document.getElementById("newMeetingBtn");
+newMeetingBtn.addEventListener("click",handleMeeting);
+
+const joinMeetingBtn = document.getElementById("joinMeetingBtn");
+joinMeetingBtn.addEventListener("click",handleJoinMeeting);
+
 
 function loadAndDisplayUser(){
 	
-	const connectedUser=localStorage.getItem('connectedUser');
+	const connectedUser=sessionStorage.getItem('connectedUser');
 	if(!connectedUser){
 		window.location.href = "login.html";
 		return;
@@ -52,13 +58,13 @@ function handleLogout(){
 		headers:{
 			'Content-Type': 'application/json'
 		},
-		body:localStorage.getItem('connectedUser')
+		body:sessionStorage.getItem('connectedUser')
 	})
 	.then(res=>{
 		return res;
 	})
 	.then(res=>{
-		localStorage.removeItem('connectedUser');
+		sessionStorage.removeItem('connectedUser');
 		window.location.href = "login.html";
 	})
 	.catch(err=>{
@@ -67,4 +73,19 @@ function handleLogout(){
 
 };
 
+
+function handleMeeting(){
+	const connectedUser = JSON.parse(sessionStorage.getItem('connectedUser'));
+	console.log(connectedUser);
+	window.open(`videocall.html?username=${connectedUser.userName}`,"_blank");
+};
+
+
+function handleJoinMeeting(){
+	const roomID = document.getElementById("meetingName").value;
+	const connectedUser = JSON.parse(sessionStorage.getItem('connectedUser'));
+	console.log(connectedUser);
+	const url = `videocall.html?roomID=${roomID}&username=${connectedUser.userName}`;
+	window.open(url,"_blank");
+};
 

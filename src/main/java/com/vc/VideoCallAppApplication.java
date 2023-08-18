@@ -25,6 +25,24 @@ public class VideoCallAppApplication {
 					.password("123")
 					.build()
 					);
+			service.register(
+					User.builder()
+					.userName("ali")
+					.email("ali@gmail.com")
+					.password("123")
+					.build()
+					);
+			service.register(
+					User.builder()
+					.userName("afk")
+					.email("afk@gmail.com")
+					.password("123")
+					.build()
+					);
+	
+			
+			
+			
 		};
 	}
 

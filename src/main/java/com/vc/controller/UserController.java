@@ -29,7 +29,7 @@ public class UserController {
 
 		private final UserService service;
 		
-		@PostMapping("")
+		@PostMapping
 		public void register(@RequestBody User user) {
 			service.register(user);
 		};
@@ -44,7 +44,7 @@ public class UserController {
 			service.logout(user.getEmail());
 		};
 	
-		@GetMapping("")
+		@GetMapping
 		public List<User> findAll(){
 			return service.findAll();
 		};
